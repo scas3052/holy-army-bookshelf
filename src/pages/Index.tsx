@@ -2,32 +2,7 @@ import { Navbar } from "@/components/Navbar";
 import { BookCard } from "@/components/BookCard";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-
-// Sample books data (in a real app, this would come from an API)
-const featuredBooks = [
-  {
-    id: "1",
-    title: "The Power of Prayer",
-    author: "Rev. John Smith",
-    price: 9.99,
-    coverImage: "/placeholder.svg",
-  },
-  {
-    id: "2",
-    title: "Daily Devotional",
-    author: "Pastor Sarah Johnson",
-    price: 0,
-    coverImage: "/placeholder.svg",
-    isFree: true,
-  },
-  {
-    id: "3",
-    title: "Walking in Faith",
-    author: "Dr. Michael Brown",
-    price: 14.99,
-    coverImage: "/placeholder.svg",
-  },
-];
+import { booksData } from "@/data/books";
 
 const Index = () => {
   return (
@@ -44,10 +19,20 @@ const Index = () => {
             Discover our collection of inspiring Christian e-books to strengthen your faith
             and deepen your spiritual journey.
           </p>
+        </div>
+      </div>
+
+      {/* Category Buttons */}
+      <div className="container mx-auto py-8">
+        <div className="flex justify-center space-x-4">
           <Link to="/books/all">
-            <Button size="lg" variant="secondary" className="bg-white text-primary hover:bg-gray-100">
-              Browse All Books
-            </Button>
+            <Button variant="outline" size="lg">All Books</Button>
+          </Link>
+          <Link to="/books/free">
+            <Button variant="outline" size="lg">Free Books</Button>
+          </Link>
+          <Link to="/books/paid">
+            <Button variant="outline" size="lg">Paid Books</Button>
           </Link>
         </div>
       </div>
@@ -58,53 +43,9 @@ const Index = () => {
           Featured Books
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {featuredBooks.map((book) => (
+          {booksData.slice(0, 3).map((book) => (
             <BookCard key={book.id} {...book} />
           ))}
-        </div>
-      </div>
-
-      {/* Categories Section */}
-      <div className="bg-white py-16">
-        <div className="container mx-auto">
-          <h2 className="font-serif text-3xl font-bold mb-12 text-center">
-            Browse by Category
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <Link to="/books/all" className="group">
-              <div className="bg-primary/5 rounded-lg p-8 text-center transition-all group-hover:bg-primary/10">
-                <h3 className="font-serif text-2xl font-semibold mb-4">All Books</h3>
-                <p className="text-gray-600 mb-4">
-                  Browse our complete collection of spiritual literature
-                </p>
-                <Button variant="link" className="text-primary">
-                  View All →
-                </Button>
-              </div>
-            </Link>
-            <Link to="/books/free" className="group">
-              <div className="bg-primary/5 rounded-lg p-8 text-center transition-all group-hover:bg-primary/10">
-                <h3 className="font-serif text-2xl font-semibold mb-4">Free Books</h3>
-                <p className="text-gray-600 mb-4">
-                  Access our collection of free spiritual resources
-                </p>
-                <Button variant="link" className="text-primary">
-                  View Free Books →
-                </Button>
-              </div>
-            </Link>
-            <Link to="/books/paid" className="group">
-              <div className="bg-primary/5 rounded-lg p-8 text-center transition-all group-hover:bg-primary/10">
-                <h3 className="font-serif text-2xl font-semibold mb-4">Premium Books</h3>
-                <p className="text-gray-600 mb-4">
-                  Explore our premium selection of in-depth teachings
-                </p>
-                <Button variant="link" className="text-primary">
-                  View Premium →
-                </Button>
-              </div>
-            </Link>
-          </div>
         </div>
       </div>
 

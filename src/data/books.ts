@@ -6,6 +6,7 @@ export const booksData = [
     price: 9.99,
     coverImage: "/placeholder.svg",
     category: "paid",
+    language: "English",
   },
   {
     id: "2",
@@ -15,6 +16,7 @@ export const booksData = [
     coverImage: "/placeholder.svg",
     category: "free",
     isFree: true,
+    language: "English",
   },
   {
     id: "3",
@@ -23,6 +25,7 @@ export const booksData = [
     price: 14.99,
     coverImage: "/placeholder.svg",
     category: "paid",
+    language: "Spanish",
   },
   {
     id: "4",
@@ -31,6 +34,7 @@ export const booksData = [
     price: 12.99,
     coverImage: "/placeholder.svg",
     category: "paid",
+    language: "French",
   },
   {
     id: "5",
@@ -40,5 +44,6 @@ export const booksData = [
     coverImage: "/placeholder.svg",
     category: "free",
     isFree: true,
+    language: "English",
   },
 ];
