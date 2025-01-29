@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "@/components/ui/use-toast";
+import { useCart } from "@/contexts/CartContext";
 
 interface BookCardProps {
   id: string;
@@ -20,9 +21,10 @@ export const BookCard = ({
   isFree,
 }: BookCardProps) => {
   const navigate = useNavigate();
+  const { addToCart } = useCart();
 
   const handleAddToCart = () => {
-    // In a real app, this would interact with a cart state management system
+    addToCart({ id, title, author, price, coverImage, isFree });
     toast({
       title: "Added to cart",
       description: `${title} has been added to your cart.`,
@@ -31,11 +33,7 @@ export const BookCard = ({
 
   return (
     <div className="bg-white rounded-lg shadow-md overflow-hidden transition-transform hover:scale-105">
-      <img
-        src={coverImage}
-        alt={title}
-        className="w-full h-48 object-cover"
-      />
+      <img src={coverImage} alt={title} className="w-full h-48 object-cover" />
       <div className="p-4">
         <h3 className="font-serif font-semibold text-lg mb-1">{title}</h3>
         <p className="text-gray-600 text-sm mb-2">{author}</p>
@@ -44,12 +42,12 @@ export const BookCard = ({
             {isFree ? "Free" : `$${price.toFixed(2)}`}
           </span>
           <div className="space-x-2">
-            <Button variant="outline" onClick={handleAddToCart}>
-              Add to Cart
-            </Button>
-            <Button onClick={() => navigate(`/book/${id}`)}>
-              View Details
-            </Button>
+            {!isFree && (
+              <Button variant="outline" onClick={handleAddToCart}>
+                Add to Cart
+              </Button>
+            )}
+            <Button onClick={() => navigate(`/book/${id}`)}>View Details</Button>
           </div>
         </div>
       </div>
