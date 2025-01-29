@@ -10,7 +10,6 @@ const booksData = [
     author: "Rev. John Smith",
     price: 9.99,
     coverImage: "/placeholder.svg",
-    language: "English",
     category: "paid",
   },
   {
@@ -19,7 +18,6 @@ const booksData = [
     author: "Pastor Sarah Johnson",
     price: 0,
     coverImage: "/placeholder.svg",
-    language: "English",
     category: "free",
     isFree: true,
   },
@@ -29,7 +27,6 @@ const booksData = [
     author: "Dr. Michael Brown",
     price: 14.99,
     coverImage: "/placeholder.svg",
-    language: "English",
     category: "paid",
   },
   {
@@ -38,7 +35,6 @@ const booksData = [
     author: "Pastor David Wilson",
     price: 12.99,
     coverImage: "/placeholder.svg",
-    language: "English",
     category: "paid",
   },
   {
@@ -47,7 +43,6 @@ const booksData = [
     author: "Dr. Emily White",
     price: 0,
     coverImage: "/placeholder.svg",
-    language: "English",
     category: "free",
     isFree: true,
   },
