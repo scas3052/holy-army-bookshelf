@@ -7,21 +7,53 @@ const Books = () => {
   const { category } = useParams();
   
   const filteredBooks = booksData.filter((book) => {
+    if (category?.startsWith('language/')) {
+      const language = category.replace('language/', '');
+      return book.language === language;
+    }
+    if (category?.startsWith('genre/')) {
+      const genre = category.replace('genre/', '');
+      return book.genre === genre;
+    }
     if (category === "free") return book.category === "free";
     if (category === "paid") return book.category === "paid";
-    return true; // "all" category
+    if (category === "grid" || category === "list") return true;
+    return true;
   });
+
+  const getPageTitle = () => {
+    if (category?.startsWith('language/')) {
+      const language = category.replace('language/', '');
+      return `${language} Books`;
+    }
+    if (category?.startsWith('genre/')) {
+      const genre = category.replace('genre/', '');
+      return `${genre.charAt(0).toUpperCase() + genre.slice(1)} Books`;
+    }
+    if (category === "grid") return "Grid View";
+    if (category === "list") return "List View";
+    if (category) return `${category.charAt(0).toUpperCase() + category.slice(1)} Books`;
+    return "All Books";
+  };
 
   return (
     <div className="min-h-screen bg-gray-50">
       <Navbar />
       <div className="container mx-auto py-12">
         <h1 className="font-serif text-4xl font-bold mb-8 text-center">
-          {category ? `${category.charAt(0).toUpperCase() + category.slice(1)} Books` : "All Books"}
+          {getPageTitle()}
         </h1>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className={`grid gap-8 ${
+          category === "list" 
+            ? "grid-cols-1" 
+            : "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+        }`}>
           {filteredBooks.map((book) => (
-            <BookCard key={book.id} {...book} />
+            <BookCard 
+              key={book.id} 
+              {...book} 
+              className={category === "list" ? "flex flex-row items-center gap-4" : ""}
+            />
           ))}
         </div>
       </div>

@@ -13,6 +13,7 @@ interface BookCardProps {
   isFree?: boolean;
   language?: string;
   genre?: string;
+  className?: string;
 }
 
 export const BookCard = ({
@@ -24,6 +25,7 @@ export const BookCard = ({
   isFree,
   language = "English",
   genre = "Uncategorized",
+  className = "",
 }: BookCardProps) => {
   const navigate = useNavigate();
   const { addToCart } = useCart();
@@ -45,9 +47,15 @@ export const BookCard = ({
   };
 
   return (
-    <div className="bg-white rounded-lg shadow-md overflow-hidden transition-transform hover:scale-105 w-full max-w-[300px] mx-auto">
-      <img src={coverImage} alt={title} className="w-full h-40 object-cover" />
-      <div className="p-4">
+    <div className={`bg-white rounded-lg shadow-md overflow-hidden transition-transform hover:scale-105 ${className}`}>
+      <div className={className.includes("flex") ? "flex-shrink-0 w-1/4" : ""}>
+        <img 
+          src={coverImage} 
+          alt={title} 
+          className={className.includes("flex") ? "w-full h-40 object-cover" : "w-full h-40 object-cover"}
+        />
+      </div>
+      <div className="p-4 flex-grow">
         <h3 className="font-serif font-semibold text-lg mb-1 line-clamp-2">{title}</h3>
         <p className="text-gray-600 text-sm mb-2">{author}</p>
         <div className="flex flex-wrap gap-2 mb-2">
