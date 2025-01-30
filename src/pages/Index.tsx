@@ -3,6 +3,7 @@ import { BookCard } from "@/components/BookCard";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { booksData } from "@/data/books";
+import { Link } from "react-router-dom";
 
 const Index = () => {
   const [selectedCategory, setSelectedCategory] = useState<"all" | "free" | "paid">("all");
