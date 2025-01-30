@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "@/components/ui/use-toast";
 import { useCart } from "@/contexts/CartContext";
-import { Download } from "lucide-react";
+import { Download, Eye } from "lucide-react";
 
 interface BookCardProps {
   id: string;
@@ -12,6 +12,7 @@ interface BookCardProps {
   coverImage: string;
   isFree?: boolean;
   language?: string;
+  genre?: string;
 }
 
 export const BookCard = ({
@@ -22,6 +23,7 @@ export const BookCard = ({
   coverImage,
   isFree,
   language = "English",
+  genre = "Uncategorized",
 }: BookCardProps) => {
   const navigate = useNavigate();
   const { addToCart } = useCart();
@@ -48,12 +50,27 @@ export const BookCard = ({
       <div className="p-4">
         <h3 className="font-serif font-semibold text-lg mb-1">{title}</h3>
         <p className="text-gray-600 text-sm mb-2">{author}</p>
-        <p className="text-gray-500 text-sm mb-2">Language: {language}</p>
+        <div className="flex flex-wrap gap-2 mb-2">
+          <span className="text-xs bg-gray-100 px-2 py-1 rounded">
+            {language}
+          </span>
+          <span className="text-xs bg-gray-100 px-2 py-1 rounded">
+            {genre}
+          </span>
+        </div>
         <div className="flex justify-between items-center">
           <span className="font-bold text-primary">
             {isFree ? "Free" : `$${price.toFixed(2)}`}
           </span>
-          <div className="flex space-x-2">
+          <div className="flex gap-2">
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => navigate(`/book/${id}`)}
+            >
+              <Eye className="mr-2 h-4 w-4" />
+              Preview
+            </Button>
             {isFree ? (
               <Button onClick={handleDownload} size="sm">
                 <Download className="mr-2 h-4 w-4" />
@@ -64,9 +81,6 @@ export const BookCard = ({
                 Add to Cart
               </Button>
             )}
-            <Button size="sm" onClick={() => navigate(`/book/${id}`)}>
-              View Details
-            </Button>
           </div>
         </div>
       </div>

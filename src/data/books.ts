@@ -7,6 +7,7 @@ export const booksData = [
     coverImage: "/placeholder.svg",
     category: "paid",
     language: "English",
+    genre: "biblical study",
   },
   {
     id: "2",
@@ -17,6 +18,7 @@ export const booksData = [
     category: "free",
     isFree: true,
     language: "English",
+    genre: "devotional",
   },
   {
     id: "3",
@@ -26,6 +28,7 @@ export const booksData = [
     coverImage: "/placeholder.svg",
     category: "paid",
     language: "Spanish",
+    genre: "testimonial",
   },
   {
     id: "4",
@@ -35,6 +38,7 @@ export const booksData = [
     coverImage: "/placeholder.svg",
     category: "paid",
     language: "French",
+    genre: "character study",
   },
   {
     id: "5",
@@ -45,5 +49,29 @@ export const booksData = [
     category: "free",
     isFree: true,
     language: "English",
+    genre: "biblical study",
   },
 ];
+
+export const genres = [
+  "autobiography",
+  "biblical study",
+  "biography",
+  "character study",
+  "children",
+  "devotional",
+  "testimonial",
+] as const;
+
+export const getLanguages = () => {
+  const languages = new Set(booksData.map(book => book.language));
+  return Array.from(languages);
+};
+
+export const getAuthorStats = () => {
+  const authorStats = booksData.reduce((acc, book) => {
+    acc[book.author] = (acc[book.author] || 0) + 1;
+    return acc;
+  }, {} as Record<string, number>);
+  return authorStats;
+};

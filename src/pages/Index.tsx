@@ -18,9 +18,9 @@ const Index = () => {
       <Navbar />
       
       {/* Hero Section */}
-      <div className="bg-primary text-white py-20">
+      <div className="bg-secondary text-secondary-foreground py-20">
         <div className="container mx-auto text-center">
-          <h1 className="font-serif text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-300% animate-gradient bg-clip-text text-transparent">
+          <h1 className="font-serif text-4xl md:text-6xl font-bold mb-6">
             Spiritual Growth Through Reading
           </h1>
           <p className="text-lg md:text-xl mb-8 max-w-2xl mx-auto">
@@ -80,10 +80,10 @@ const Index = () => {
             <div>
               <h3 className="font-serif text-xl font-bold mb-4">Quick Links</h3>
               <ul className="space-y-2">
-                <li>📖 <a href="/books/all" className="hover:text-primary">Books</a></li>
-                <li>🛒 <a href="/cart" className="hover:text-primary">Cart</a></li>
-                <li>🔑 <a href="/login" className="hover:text-primary">Login</a></li>
-                <li>📩 <a href="/contact" className="hover:text-primary">Contact Us</a></li>
+                <li>📖 <Link to="/books/all" className="hover:text-primary">Books</Link></li>
+                <li>🛒 <Link to="/cart" className="hover:text-primary">Cart</Link></li>
+                <li>🔑 <Link to="/login" className="hover:text-primary">Login</Link></li>
+                <li>📩 <Link to="/contact" className="hover:text-primary">Contact Us</Link></li>
               </ul>
             </div>
 
