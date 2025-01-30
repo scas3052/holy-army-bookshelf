@@ -1,11 +1,9 @@
 import { ShoppingCart, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useCart } from "@/contexts/CartContext";
 
 export const Navbar = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { cart } = useCart();
 
   return (
@@ -14,7 +12,7 @@ export const Navbar = () => {
         <div className="flex justify-between items-center h-20">
           <div className="flex-1" /> {/* Spacer */}
           <Link to="/" className="flex items-center">
-            <h1 className="text-3xl md:text-4xl font-serif font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent animate-gradient">
+            <h1 className="text-3xl md:text-4xl font-serif font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-300% animate-gradient bg-clip-text text-transparent">
               HOLY ARMY FELLOWSHIP
             </h1>
           </Link>

@@ -53,18 +53,20 @@ export const BookCard = ({
           <span className="font-bold text-primary">
             {isFree ? "Free" : `$${price.toFixed(2)}`}
           </span>
-          <div className="space-x-2">
+          <div className="flex space-x-2">
             {isFree ? (
-              <Button onClick={handleDownload}>
+              <Button onClick={handleDownload} size="sm">
                 <Download className="mr-2 h-4 w-4" />
                 Download
               </Button>
             ) : (
-              <Button variant="outline" onClick={handleAddToCart}>
+              <Button variant="outline" size="sm" onClick={handleAddToCart}>
                 Add to Cart
               </Button>
             )}
-            <Button onClick={() => navigate(`/book/${id}`)}>View Details</Button>
+            <Button size="sm" onClick={() => navigate(`/book/${id}`)}>
+              View Details
+            </Button>
           </div>
         </div>
       </div>
