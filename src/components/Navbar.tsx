@@ -16,6 +16,10 @@ import { genres, getLanguages } from "@/data/books";
 export const Navbar = () => {
   const { cart } = useCart();
   const [isOpen, setIsOpen] = useState(false);
+  const [isBooksOpen, setBooksOpen] = useState(false);
+  const [isGenresOpen, setGenresOpen] = useState(false);
+  const [isLanguagesOpen, setLanguagesOpen] = useState(false);
+  const [isShopOpen, setShopOpen] = useState(false);
   const languages = getLanguages();
 
   return (
@@ -31,7 +35,7 @@ export const Navbar = () => {
             <Menu className="h-6 w-6" />
           </Button>
 
-          <Link to="/" className="flex-1 flex justify-center">
+          <Link to="/" className="flex-1 md:flex-none flex justify-center md:justify-start md:ml-8">
             <h1 className="text-3xl md:text-4xl font-serif font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-300% animate-gradient bg-clip-text text-transparent">
               HOLY ARMY FELLOWSHIP
             </h1>
@@ -49,7 +53,7 @@ export const Navbar = () => {
                 <NavigationMenuItem>
                   <NavigationMenuTrigger>Books</NavigationMenuTrigger>
                   <NavigationMenuContent>
-                    <div className="grid gap-3 p-6 w-[400px]">
+                    <div className="grid gap-3 p-6 w-[400px] bg-white">
                       <div>
                         <h4 className="font-medium mb-2">Genres</h4>
                         <div className="grid grid-cols-2 gap-2">
@@ -85,7 +89,7 @@ export const Navbar = () => {
                 <NavigationMenuItem>
                   <NavigationMenuTrigger>Shop</NavigationMenuTrigger>
                   <NavigationMenuContent>
-                    <div className="p-4 w-[200px]">
+                    <div className="p-4 w-[200px] bg-white">
                       <Link to="/books/grid" className="block py-2 hover:text-primary">
                         Grid View
                       </Link>
@@ -100,7 +104,9 @@ export const Navbar = () => {
                 </NavigationMenuItem>
               </NavigationMenuList>
             </NavigationMenu>
+          </div>
 
+          <div className="flex items-center space-x-2">
             <Link to="/cart" className="relative">
               <Button variant="ghost" size="icon">
                 <ShoppingCart className="h-5 w-5" />
@@ -124,40 +130,75 @@ export const Navbar = () => {
         {isOpen && (
           <div className="md:hidden py-4 border-t">
             <Link to="/" className="block py-2">Home</Link>
+            
             <div className="py-2">
               <button
                 className="flex items-center justify-between w-full"
-                onClick={() => setIsOpen(!isOpen)}
+                onClick={() => setBooksOpen(!isBooksOpen)}
               >
-                Books <ChevronDown className="h-4 w-4" />
+                Books <ChevronDown className={`h-4 w-4 transform transition-transform ${isBooksOpen ? 'rotate-180' : ''}`} />
               </button>
-              <div className="pl-4 mt-2">
-                <h4 className="font-medium mb-2">Genres</h4>
-                {genres.map((genre) => (
-                  <Link
-                    key={genre}
-                    to={`/books/genre/${genre}`}
-                    className="block py-1 text-sm"
+              {isBooksOpen && (
+                <div className="pl-4 mt-2">
+                  <button
+                    className="flex items-center justify-between w-full py-2"
+                    onClick={() => setGenresOpen(!isGenresOpen)}
                   >
-                    {genre.charAt(0).toUpperCase() + genre.slice(1)}
-                  </Link>
-                ))}
-                <h4 className="font-medium mb-2 mt-4">Languages</h4>
-                {languages.map((language) => (
-                  <Link
-                    key={language}
-                    to={`/books/language/${language}`}
-                    className="block py-1 text-sm"
+                    Genres <ChevronDown className={`h-4 w-4 transform transition-transform ${isGenresOpen ? 'rotate-180' : ''}`} />
+                  </button>
+                  {isGenresOpen && (
+                    <div className="pl-4">
+                      {genres.map((genre) => (
+                        <Link
+                          key={genre}
+                          to={`/books/genre/${genre}`}
+                          className="block py-1 text-sm"
+                        >
+                          {genre.charAt(0).toUpperCase() + genre.slice(1)}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+                  
+                  <button
+                    className="flex items-center justify-between w-full py-2"
+                    onClick={() => setLanguagesOpen(!isLanguagesOpen)}
                   >
-                    {language}
-                  </Link>
-                ))}
-              </div>
+                    Languages <ChevronDown className={`h-4 w-4 transform transition-transform ${isLanguagesOpen ? 'rotate-180' : ''}`} />
+                  </button>
+                  {isLanguagesOpen && (
+                    <div className="pl-4">
+                      {languages.map((language) => (
+                        <Link
+                          key={language}
+                          to={`/books/language/${language}`}
+                          className="block py-1 text-sm"
+                        >
+                          {language}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              )}
             </div>
-            <Link to="/books/grid" className="block py-2">Grid View</Link>
-            <Link to="/books/list" className="block py-2">List View</Link>
-            <Link to="/cart" className="block py-2">Cart</Link>
-            <Link to="/login" className="block py-2">My Account</Link>
+
+            <div className="py-2">
+              <button
+                className="flex items-center justify-between w-full"
+                onClick={() => setShopOpen(!isShopOpen)}
+              >
+                Shop <ChevronDown className={`h-4 w-4 transform transition-transform ${isShopOpen ? 'rotate-180' : ''}`} />
+              </button>
+              {isShopOpen && (
+                <div className="pl-4">
+                  <Link to="/books/grid" className="block py-2">Grid View</Link>
+                  <Link to="/books/list" className="block py-2">List View</Link>
+                  <Link to="/cart" className="block py-2">Cart</Link>
+                  <Link to="/login" className="block py-2">My Account</Link>
+                </div>
+              )}
+            </div>
           </div>
         )}
       </div>
