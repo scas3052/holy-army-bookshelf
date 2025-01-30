@@ -51,6 +51,27 @@ export const booksData = [
     language: "English",
     genre: "biblical study",
   },
+  {
+    id: "6",
+    title: "My Journey with Christ",
+    author: "John Doe",
+    price: 19.99,
+    coverImage: "/placeholder.svg",
+    category: "paid",
+    language: "English",
+    genre: "autobiography",
+  },
+  {
+    id: "7",
+    title: "Bible Stories for Kids",
+    author: "Sarah Wilson",
+    price: 0,
+    coverImage: "/placeholder.svg",
+    category: "free",
+    isFree: true,
+    language: "English",
+    genre: "children",
+  },
 ];
 
 export const genres = [

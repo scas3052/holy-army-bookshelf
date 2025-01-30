@@ -9,14 +9,15 @@ const Books = () => {
   const filteredBooks = booksData.filter((book) => {
     if (category?.startsWith('language/')) {
       const language = category.replace('language/', '');
-      return book.language === language;
+      return book.language.toLowerCase() === language.toLowerCase();
     }
     if (category?.startsWith('genre/')) {
       const genre = category.replace('genre/', '');
-      return book.genre === genre;
+      return book.genre.toLowerCase() === genre.toLowerCase();
     }
     if (category === "free") return book.category === "free";
     if (category === "paid") return book.category === "paid";
+    if (category === "english") return book.language.toLowerCase() === "english";
     if (category === "grid" || category === "list") return true;
     return true;
   });
@@ -30,6 +31,7 @@ const Books = () => {
       const genre = category.replace('genre/', '');
       return `${genre.charAt(0).toUpperCase() + genre.slice(1)} Books`;
     }
+    if (category === "english") return "English Books";
     if (category === "grid") return "Grid View";
     if (category === "list") return "List View";
     if (category) return `${category.charAt(0).toUpperCase() + category.slice(1)} Books`;
